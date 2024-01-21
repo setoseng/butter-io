@@ -53,8 +53,8 @@ export default function Home() {
           </Text>
           <Text className="text-grey text-2xl">
             Let us take the hard work out of predicting churn. From our
-            developers to your table we offer the leading AI tool's giving you
-            accurate information in real time.
+            developers to your table we offer the leading AI tool&apos;s giving
+            you accurate information in real time.
           </Text>
         </div>
       </Section>
