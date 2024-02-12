@@ -1,7 +1,7 @@
 import { Text, Section } from "../components";
 export default function WhoWeAre() {
   return (
-    <Section variant="narrow" className="flex flex-col gap-10">
+    <Section variant="narrow" className="flex flex-col gap-10 h-[100vh]">
       <div className="flex justify-center sm:px-[5rem]">
         <Text className="text-primary text-4xl sm:text-6xl" fontType="serif">
           Who We Are

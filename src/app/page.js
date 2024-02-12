@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Text, Button, Section } from "./components";
+import { Text, Section } from "./components";
+import { Button } from "@nextui-org/react";
 
 import Churn from "../../public/churn.webp";
 import Butter from "../../public/butter.webp";
@@ -21,7 +22,11 @@ export default function Home() {
               The smoothest AI tool to boost customer retention.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <Button href="/">
+              <Button
+                href="/"
+                color="primary"
+                className="inline-flex text-center items-center py-8 px-6 rounded"
+              >
                 <Text className="text-md sm:text-lg text-white">
                   Try The Spread
                 </Text>

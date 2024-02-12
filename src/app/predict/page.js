@@ -1,7 +1,9 @@
-import { Text, Section } from "../components";
+import { Text, Section, PredictOption, Button } from "../components";
+import { Divider } from "@nextui-org/react";
+
 export default function Predict() {
   return (
-    <Section className="flex flex-col gap-3">
+    <Section className="flex flex-col gap-3 h-[100vh]">
       <div className="flex justify-start sm:px-[5rem]">
         <Text className="text-primary text-2xl sm:text-4xl" fontType="serif">
           What is Butter?
@@ -17,7 +19,13 @@ export default function Predict() {
           and present to you Butter
         </Text>
       </div>
-      <div className="divider"></div>
+      <Divider className="px-5 sm:px-20 my-4" />
+      <PredictOption />
+      <div className="mt-10 mx-auto">
+        <Button>
+          <Text className="text-white">Predict</Text>
+        </Button>
+      </div>
     </Section>
   );
 }

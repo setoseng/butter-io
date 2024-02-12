@@ -2,6 +2,7 @@ import { newsreader } from "./fonts";
 import "./globals.css";
 
 import { NavBar } from "./components";
+import Provider from "./Provider";
 
 export const metadata = {
   title: "Create Next App",
@@ -12,8 +13,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${newsreader.className}`}>
-        <NavBar />
-        {children}
+        <Provider>
+          <NavBar />
+          {children}
+        </Provider>
       </body>
     </html>
   );
