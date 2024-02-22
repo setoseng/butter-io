@@ -21,14 +21,14 @@ const defaultState = {
 export function PredictOption() {
   const [state, formAction] = useFormState(churnRequest, defaultState);
   const { pending } = useFormStatus();
-  console.log(state);
+
   return (
     <>
       <form action={churnRequest}>
-        <div className="grid grid-cols-2 sm:gap-1 content-center">
+        <div className="grid grid-cols-2 sm:gap-1 content-center gap-2">
           <div className="grid grid-row-2">
             <h3 className="text-black text-md">Tenure</h3>
-            <div className="w-[20rem]">
+            <div className="sm:w-[20rem] mr-2">
               <Input
                 name="tenure"
                 label="Years of Service"
@@ -82,7 +82,7 @@ export function PredictOption() {
           </RadioGroup>
           <div className="grid grid-row-2">
             <h3 className="text-black text-md">Monthly Charges</h3>
-            <div className="w-[20rem]">
+            <div className="sm:w-[20rem] mr-2">
               <Input
                 label="Cost"
                 color="default"
@@ -105,7 +105,7 @@ export function PredictOption() {
           </div>
           <div className="grid grid-row-2">
             <h3 className="text-black text-md">Total Charges</h3>
-            <div className="w-[20rem]">
+            <div className="sm:w-[20rem] mr-2">
               <Input
                 label="Cost"
                 color="default"
@@ -162,13 +162,15 @@ export function PredictOption() {
             <Radio value="Mailed check">Mailed check</Radio>
           </RadioGroup>
         </div>
-        <div className="flex justify-center mt-10">
+        <div className="flex justify-center my-10 sm:mt-10">
           <Button
             size="lg"
             color="primary"
             type="submit"
             aria-disabled={pending}
             disabled={pending}
+            radius="none"
+            className="w-[10rem] sm:w-[20rem]"
           >
             <Text className="text-white uppercase">Predict</Text>
           </Button>

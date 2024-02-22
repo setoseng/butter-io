@@ -18,19 +18,21 @@ export function NavBar() {
 
   const menuItems = [
     { name: "Home", link: "/" },
-    { name: "Newstand", link: "/newstand" },
     { name: "Who We Are", link: "/whoweare" },
-    { name: "Our Profile", link: "/ourprofile" },
+    { name: "How It Works", link: "/howitworks" },
   ];
 
   return (
     <>
-      <Navbar onMenuOpenChange={setIsMenuOpen} className="bg-transparent">
+      <Navbar
+        isMenuOpen={isMenuOpen}
+        onMenuOpenChange={setIsMenuOpen}
+        className="bg-transparent"
+      >
         <NavbarContent justify="start">
-          <NavbarMenuToggle
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            className="flex sm:hidden text-black"
-          />
+          <Button color="primary">
+            <NavbarMenuToggle />
+          </Button>
           <NavbarBrand>
             <Link href="/">
               <Text variant="brand" fontType="serif" className="text-primary">
@@ -42,18 +44,13 @@ export function NavBar() {
 
         <NavbarContent justify="end" className="hidden sm:flex gap-5">
           <NavbarItem>
-            <Link href="/">
-              <Text className="text-lg">Newstand</Text>
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
             <Link href="/whoweare" aria-current="page">
               <Text className="text-lg">Who We Are</Text>
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link href="/">
-              <Text className="text-lg">Our Profile</Text>
+            <Link href="/howitworks">
+              <Text className="text-lg">How It Works</Text>
             </Link>
           </NavbarItem>
           <NavbarItem>
@@ -61,7 +58,7 @@ export function NavBar() {
               as={Link}
               color="primary"
               href="/predict"
-              radius="sm"
+              radius="none"
               className="py-6 px-6"
             >
               <Text variant="primary" className="text-lg text-white">

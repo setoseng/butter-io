@@ -16,6 +16,7 @@ export function Text({
     primary: `${baseClass} text-md `,
     brand: `${baseClass} text-4xl`,
   };
+
   const fontTypes = {
     sans: inter.className,
     serif: newsreader.className,
