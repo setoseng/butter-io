@@ -1,4 +1,4 @@
-import { Text, Section, PredictOption, Button } from "../components";
+import { Text, Section, PredictOption } from "../components";
 import { Divider } from "@nextui-org/react";
 
 export default function Predict() {
@@ -21,11 +21,6 @@ export default function Predict() {
       </div>
       <Divider className="px-5 sm:px-20 my-4" />
       <PredictOption />
-      <div className="mt-10 mx-auto">
-        <Button>
-          <Text className="text-white">Predict</Text>
-        </Button>
-      </div>
     </Section>
   );
 }

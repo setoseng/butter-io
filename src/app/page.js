@@ -23,7 +23,7 @@ export default function Home() {
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Button
-                href="/"
+                href="/predict"
                 color="primary"
                 className="inline-flex text-center items-center py-8 px-6 rounded"
               >

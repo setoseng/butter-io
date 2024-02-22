@@ -1,7 +1,10 @@
 "use client";
 import { useState } from "react";
+import { churnRequest } from "../actions";
+import { useFormState, useFormStatus } from "react-dom";
+
 import { Text } from "./Text";
-import { Input, Radio, RadioGroup } from "@nextui-org/react";
+import { Input, Radio, RadioGroup, Button } from "@nextui-org/react";
 import { inter } from "../fonts";
 
 const defaultState = {
@@ -9,154 +12,169 @@ const defaultState = {
   securitySelected: "",
   backupSelected: "",
   paperlessSelected: "",
-  monthlyCharge: "",
-  totalCharge: "",
+  monthlyCharges: 0,
+  totalCharge: 0,
   internetService: "",
   contract: "",
 };
 
 export function PredictOption() {
-  const [phoneSelected, setPhoneSelected] = useState(
-    defaultState.phoneSelected
-  );
-  const [securitySelected, setSecuritySelected] = useState(
-    defaultState.securitySelected
-  );
-  const [backupSelected, setBackupSelected] = useState(
-    defaultState.backupSelected
-  );
-  const [paperlessSelected, setPaperlessSelected] = useState(
-    defaultState.paperlessSelected
-  );
-  const [monthlyCharge, setMonthlyCharge] = useState(
-    defaultState.monthlyCharge
-  );
-  const [totalCharge, setTotalCharge] = useState(defaultState.totalCharge);
-  const [internetService, setInternetService] = useState(
-    defaultState.internetService
-  );
-  const [contract, setContract] = useState(defaultState.contract);
-
+  const [state, formAction] = useFormState(churnRequest, defaultState);
+  const { pending } = useFormStatus();
+  console.log(state);
   return (
-    <div className="grid grid-cols-2 sm:gap-1 content-center">
-      <div className="grid grid-row-2">
-        <h3 className="text-black text-md">Tenure</h3>
-        <div className="w-[20rem]">
-          <Input
-            label="Years of Service"
-            color="default"
-            labelPlacement="inside"
-            size="sm"
-            type="number"
-            variant="bordered"
-            classNames={{
-              input: "bg-neutral",
-            }}
-          />
+    <>
+      <form action={churnRequest}>
+        <div className="grid grid-cols-2 sm:gap-1 content-center">
+          <div className="grid grid-row-2">
+            <h3 className="text-black text-md">Tenure</h3>
+            <div className="w-[20rem]">
+              <Input
+                name="tenure"
+                label="Years of Service"
+                color="default"
+                labelPlacement="inside"
+                size="sm"
+                type="number"
+                variant="bordered"
+                classNames={{
+                  input: "bg-neutral",
+                }}
+                isRequired={true}
+              />
+            </div>
+          </div>
+          <RadioGroup
+            label="Phone Service"
+            orientation="horizontal"
+            name="phoneService"
+            isRequired={true}
+          >
+            <Radio value="Yes">Yes</Radio>
+            <Radio value="No">No</Radio>
+          </RadioGroup>
+          <RadioGroup
+            label="Online Security"
+            orientation="horizontal"
+            name="onlineSecurity"
+            isRequired={true}
+          >
+            <Radio value="Yes">Yes</Radio>
+            <Radio value="No">No</Radio>
+          </RadioGroup>
+          <RadioGroup
+            label="Online Backup"
+            orientation="horizontal"
+            name="onlineBackup"
+            isRequired={true}
+          >
+            <Radio value="Yes">Yes</Radio>
+            <Radio value="No">No</Radio>
+          </RadioGroup>
+          <RadioGroup
+            label="Paperless Billing"
+            orientation="horizontal"
+            name="paperlessBilling"
+            isRequired={true}
+          >
+            <Radio value="Yes">Yes</Radio>
+            <Radio value="No">No</Radio>
+          </RadioGroup>
+          <div className="grid grid-row-2">
+            <h3 className="text-black text-md">Monthly Charges</h3>
+            <div className="w-[20rem]">
+              <Input
+                label="Cost"
+                color="default"
+                labelPlacement="inside"
+                size="sm"
+                variant="bordered"
+                type="number"
+                name="monthlyCharges"
+                isRequired={true}
+                startContent={
+                  <div className="pointer-events-none flex items-center">
+                    <span className="text-default-400 text-small">$</span>
+                  </div>
+                }
+                classNames={{
+                  input: "bg-neutral",
+                }}
+              />
+            </div>
+          </div>
+          <div className="grid grid-row-2">
+            <h3 className="text-black text-md">Total Charges</h3>
+            <div className="w-[20rem]">
+              <Input
+                label="Cost"
+                color="default"
+                labelPlacement="inside"
+                size="sm"
+                variant="bordered"
+                name="totalCharges"
+                type="number"
+                isRequired={true}
+                startContent={
+                  <div className="pointer-events-none flex items-center">
+                    <span className="text-default-400 text-small">$</span>
+                  </div>
+                }
+                classNames={{
+                  input: "bg-neutral",
+                }}
+              />
+            </div>
+          </div>
+          <RadioGroup
+            label="Internet Service"
+            orientation="horizontal"
+            name="internetService"
+            isRequired={true}
+          >
+            <Radio value="DSL">DSL</Radio>
+            <Radio value="Fiber">Fiber Optics</Radio>
+            <Radio value="None">No Service</Radio>
+          </RadioGroup>
+          <RadioGroup
+            label="Contract"
+            orientation="horizontal"
+            name="contract"
+            isRequired={true}
+          >
+            <Radio value="Month-to-month">Month to Month</Radio>
+            <Radio value="One year">1 Year</Radio>
+            <Radio value="Two year">2 Years</Radio>
+          </RadioGroup>
+          <RadioGroup
+            label="Payment Method"
+            orientation="horizontal"
+            name="paymentMethod"
+            isRequired={true}
+          >
+            <Radio value="Bank transfer (automatic)">
+              Bank transfer (automatic)
+            </Radio>
+            <Radio value="Credit card (automatic)">
+              Credit card (automatic)
+            </Radio>
+            <Radio value="Electronic check">Electronic check</Radio>
+            <Radio value="Mailed check">Mailed check</Radio>
+          </RadioGroup>
         </div>
-      </div>
-      <RadioGroup
-        label="Phone Service"
-        orientation="horizontal"
-        value={phoneSelected}
-        onValueChange={setPhoneSelected}
-      >
-        <Radio value="Yes">Yes</Radio>
-        <Radio value="No">No</Radio>
-      </RadioGroup>
-      <RadioGroup
-        label="Online Security"
-        orientation="horizontal"
-        value={securitySelected}
-        onValueChange={setSecuritySelected}
-      >
-        <Radio value="Yes">Yes</Radio>
-        <Radio value="No">No</Radio>
-      </RadioGroup>
-      <RadioGroup
-        label="Online Backup"
-        orientation="horizontal"
-        value={backupSelected}
-        onValueChange={setBackupSelected}
-      >
-        <Radio value="Yes">Yes</Radio>
-        <Radio value="No">No</Radio>
-      </RadioGroup>
-      <RadioGroup
-        label="Paperless Billing"
-        orientation="horizontal"
-        value={paperlessSelected}
-        onValueChange={setPaperlessSelected}
-      >
-        <Radio value="Yes">Yes</Radio>
-        <Radio value="No">No</Radio>
-      </RadioGroup>
-      <div className="grid grid-row-2">
-        <h3 className="text-black text-md">Monthly Charge</h3>
-        <div className="w-[20rem]">
-          <Input
-            label=""
-            color="default"
-            labelPlacement="inside"
-            size="sm"
-            variant="bordered"
-            type="number"
-            value={monthlyCharge}
-            onValueChange={setMonthlyCharge}
-            startContent={
-              <div className="pointer-events-none flex items-center">
-                <span className="text-default-400 text-small">$</span>
-              </div>
-            }
-            classNames={{
-              input: "bg-neutral",
-            }}
-          />
+        <div className="flex justify-center mt-10">
+          <Button
+            size="lg"
+            color="primary"
+            type="submit"
+            aria-disabled={pending}
+            disabled={pending}
+          >
+            <Text className="text-white uppercase">Predict</Text>
+          </Button>
         </div>
-      </div>
-      <div className="grid grid-row-2">
-        <h3 className="text-black text-md">Total Charge</h3>
-        <div className="w-[20rem]">
-          <Input
-            label=""
-            color="default"
-            labelPlacement="inside"
-            size="sm"
-            variant="bordered"
-            value={totalCharge}
-            onValueChange={setTotalCharge}
-            type="number"
-            startContent={
-              <div className="pointer-events-none flex items-center">
-                <span className="text-default-400 text-small">$</span>
-              </div>
-            }
-            classNames={{
-              input: "bg-neutral",
-            }}
-          />
-        </div>
-      </div>
-      <RadioGroup
-        label="Internet Service"
-        orientation="horizontal"
-        value={internetService}
-        onValueChange={setInternetService}
-      >
-        <Radio value="dsl">DSL</Radio>
-        <Radio value="fiber">Fiber Optics</Radio>
-        <Radio value="none">No Service</Radio>
-      </RadioGroup>
-      <RadioGroup
-        label="Contract"
-        orientation="horizontal"
-        value={contract}
-        onValueChange={setContract}
-      >
-        <Radio value="month_to_month">Month to Month</Radio>
-        <Radio value="one_year">1 Year</Radio>
-        <Radio value="two_year">2 Years</Radio>
-      </RadioGroup>
-    </div>
+      </form>
+      {state && state.message}
+    </>
   );
 }
