@@ -10,7 +10,7 @@ export default function Predict() {
         </Text>
       </div>
       <div className="flex justify-center sm:px-[5rem]">
-        <Text fontType="serif" className="text-md sm:text-lg">
+        <Text fontType="sans" className="text-md sm:text-md">
           Butter is a machine learning model trained with the goal of increasing
           customer retention by predicting churn. The model effectively predicts
           if a customer will leave a company&apos;s service with up to 80%

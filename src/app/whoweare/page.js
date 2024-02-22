@@ -8,7 +8,7 @@ export default function WhoWeAre() {
         </Text>
       </div>
       <div className="flex justify-center sm:px-[5rem]">
-        <Text fontType="serif" className="text-lg sm:text-xl">
+        <Text fontType="sans" className="text-lg sm:text-xl">
           Two friends on a mission to bring successful tech solutions in a
           friendly package. Butter marks the first chapter in a collaborative
           effort of blending modern-day AI with eye-catching web development.

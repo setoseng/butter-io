@@ -19,14 +19,33 @@ const defaultState = {
 };
 
 export function PredictOption() {
-  const [localState, setLocalState] = useState(null);
+  const [prediction, setPrediction] = useState(null);
   const [state, formAction] = useFormState(churnRequest, defaultState);
   const { pending } = useFormStatus();
   const formRef = useRef();
-  console.log(localState);
+  console.log(prediction);
+
+  function getPredictionResult() {
+    if (prediction === null) return;
+    return (
+      <div className="flex flex-col items-center h-[50vh]">
+        <Text className="text-primary text-2xl sm:text-4xl" fontType="serif">
+          Prediction Result
+        </Text>
+        <div className="flex justify-center sm:px-[5rem]">
+          <Text fontType="sans" className="text-md sm:text-md mt-5">
+            {prediction === 0
+              ? "The customer is likely to leave"
+              : "The customer is likely to stay"}
+          </Text>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
-      {localState === null && (
+      {prediction === null && (
         <form
           ref={formRef}
           action={async (formData) => {
@@ -36,7 +55,7 @@ export function PredictOption() {
             if (response.error) {
               alert("Error from server", response.error);
             }
-            setLocalState(response.prediction);
+            await setPrediction(response.prediction);
           }}
         >
           <div className="grid grid-cols-2 sm:gap-1 content-center gap-2">
@@ -148,7 +167,7 @@ export function PredictOption() {
             >
               <Radio value="DSL">DSL</Radio>
               <Radio value="Fiber optic">Fiber Optics</Radio>
-              <Radio value="None">No Service</Radio>
+              <Radio value="No service">No Service</Radio>
             </RadioGroup>
             <RadioGroup
               label="Contract"
@@ -191,16 +210,7 @@ export function PredictOption() {
           </div>
         </form>
       )}
-      {localState && (
-        <div className="flex flex-col items-center justify-center">
-          <Text className="text-2xl uppercase">Prediction</Text>
-          <Text className="mt-4">
-            {localState === 0
-              ? "Customer is likely to stay"
-              : "Customer is likely to leave"}
-          </Text>
-        </div>
-      )}
+      {getPredictionResult()}
     </>
   );
 }
