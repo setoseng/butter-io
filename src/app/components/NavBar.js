@@ -30,9 +30,7 @@ export function NavBar() {
         className="bg-transparent"
       >
         <NavbarContent justify="start">
-          <Button color="primary">
-            <NavbarMenuToggle />
-          </Button>
+          <NavbarMenuToggle />
           <NavbarBrand>
             <Link href="/">
               <Text variant="brand" fontType="serif" className="text-primary">
