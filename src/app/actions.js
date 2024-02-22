@@ -37,9 +37,8 @@ export async function churnRequest(formData) {
       }
     );
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (err) {
-    return { message: `An error occurred, ${err}"` };
+    return { error: `An error occurred, ${err}"` };
   }
 }
