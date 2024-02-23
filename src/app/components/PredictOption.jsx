@@ -35,8 +35,8 @@ export function PredictOption() {
         <div className="flex justify-center sm:px-[5rem]">
           <Text fontType="sans" className="text-md sm:text-md mt-5">
             {prediction === 0
-              ? "The customer is likely to leave"
-              : "The customer is likely to stay"}
+              ? "The customer is likely to stay"
+              : "The customer is likely to leave"}
           </Text>
         </div>
       </div>
